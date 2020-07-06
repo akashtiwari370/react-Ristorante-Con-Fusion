@@ -1,4 +1,4 @@
-export const DISHES = [
+const DISHES = [
   {
     id: 0,
     name: "Uthappizza",
@@ -192,3 +192,7 @@ export const DISHES = [
     ],
   },
 ];
+
+
+
+export default DISHES;

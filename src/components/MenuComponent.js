@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "reactstrap";
 
+import DISHES from '../shared/dishes';
+
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -18,19 +20,19 @@ class Menu extends Component {
     };
   }
 
-  onDishSelect(dish) {
-    this.setState({ selectedDish: dish });
+  onDishSelect(DISHES) {
+    this.setState({ selectedDish: DISHES });
   }
 
-  renderDish(dish) {
-    if (dish != null) {
+  renderDish(DISHES) {
+    if (DISHES != null) {
       return (
         <Fragment>
           <Card>
-            <CardImg width="100%" src={dish.image} alt={dish.name} />
+            <CardImg width="100%" src={DISHES.image} alt={DISHES.name} />
             <CardBody>
-              <CardTitle heading>{dish.name}</CardTitle>
-              <CardText>{dish.description}</CardText>
+              <CardTitle heading>{DISHES.name}</CardTitle>
+              <CardText>{DISHES.description}</CardText>
             </CardBody>
           </Card>
         </Fragment>
@@ -46,9 +48,9 @@ class Menu extends Component {
         <CardBody>
           <h4>Comments</h4>
           <CardText>
-            <p>{comments.comment}</p>
+            <p>{comments}</p>
             <p>
-              -- {comments.author} , {comments.date}
+              -- {comments} , {comments}
             </p>
           </CardText>
         </CardBody>
@@ -63,7 +65,7 @@ class Menu extends Component {
           <Card
             onClick={
               (() => this.onDishSelect(dish),
-              this.renderComments(this.state.selectedDish))
+                this.renderComments(this.state.selectedDish))
             }
           >
             <CardImg width="100%" src={dish.image} alt={dish.name} />
