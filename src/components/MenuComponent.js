@@ -14,12 +14,12 @@ class Menu extends Component {
 
     this.state = {
       selectedDish: null,
-      comments: null,
     };
   }
 
   onDishSelect(dish) {
     this.setState({ selectedDish: dish });
+    this.renderComments(dish.comments);
   }
 
   renderDish(dish) {
@@ -60,12 +60,7 @@ class Menu extends Component {
     const menu = this.props.dishes.map((dish) => {
       return (
         <div key={dish.id} className="col-12 col-md-5 m-1">
-          <Card
-            onClick={
-              (() => this.onDishSelect(dish),
-              this.renderComments(this.state.selectedDish))
-            }
-          >
+          <Card onClick={() => this.onDishSelect(dish)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
 
             <CardImgOverlay body className="ml-5">
