@@ -11,15 +11,6 @@ import {
 class Menu extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      selectedDish: null,
-    };
-  }
-
-  onDishSelect(dish) {
-    this.setState({ selectedDish: dish });
-    this.renderComments(dish.comments);
   }
 
   renderDish(dish) {
@@ -40,27 +31,11 @@ class Menu extends Component {
     }
   }
 
-  renderComments(comments) {
-    return (
-      <Card>
-        <CardBody>
-          <h4>Comments</h4>
-          <CardText>
-            <p>{comments.comment}</p>
-            <p>
-              -- {comments.author} , {comments.date}
-            </p>
-          </CardText>
-        </CardBody>
-      </Card>
-    );
-  }
-
   render() {
     const menu = this.props.dishes.map((dish) => {
       return (
         <div key={dish.id} className="col-12 col-md-5 m-1">
-          <Card onClick={() => this.onDishSelect(dish)}>
+          <Card onClick={() => this.props.onClick(dish.id)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
 
             <CardImgOverlay body className="ml-5">
@@ -73,13 +48,8 @@ class Menu extends Component {
     return (
       <div className="container">
         <div className="row">{menu}</div>
-
-        <div className="col-12 col-md-5 m-1">
-          {this.renderDish(this.state.selectedDish)}
-        </div>
       </div>
     );
   }
 }
-
 export default Menu;
